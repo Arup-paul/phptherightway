@@ -7,10 +7,18 @@ ini_set('display_startup_errors', 1);
 
 require __DIR__ .'/../vendor/autoload.php';
 
-$service = new \App\DebtCollectionService();
+$invoice = new App\Invoice();
 
-$service->collectDebt(new \App\CollectionAgency());
+$invoice->process(1,"some");
 
+
+
+//$invoice->amount = 100;
+//var_dump(isset($invoice->amount));
+//
+//unset($invoice->amount);
+//
+//var_dump(isset($invoice->amount));
 
 
 
