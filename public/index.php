@@ -7,20 +7,16 @@ ini_set('display_startup_errors', 1);
 
 require __DIR__ .'/../vendor/autoload.php';
 
-$invoice = new App\Invoice();
 
-$invoice->process(1,"some");
-
+ $route = new App\Router();
 
 
-//$invoice->amount = 100;
-//var_dump(isset($invoice->amount));
-//
-//unset($invoice->amount);
-//
-//var_dump(isset($invoice->amount));
+$route->register('/',[\App\Classes\Home::class,'index'])
+   ->register('/invoice',[\App\Classes\Invoice::class,'index']);
 
 
 
+
+echo $route->resolve($_SERVER['REQUEST_URI']);
 
 
