@@ -11,12 +11,12 @@ require __DIR__ .'/../vendor/autoload.php';
  $route = new App\Router();
 
 
-$route->register('/',[\App\Classes\Home::class,'index'])
-   ->register('/invoice',[\App\Classes\Invoice::class,'index']);
+$route->get('/',[\App\Classes\Home::class,'index'])
+   ->get('/invoice',[\App\Classes\Invoice::class,'index']);
 
 
 
 
-echo $route->resolve($_SERVER['REQUEST_URI']);
+echo $route->resolve($_SERVER['REQUEST_URI'],strtolower($_SERVER['REQUEST_METHOD']));
 
 
