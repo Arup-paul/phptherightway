@@ -7,12 +7,17 @@ ini_set('display_startup_errors', 1);
 
 require __DIR__ .'/../vendor/autoload.php';
 
+define('VIEW_PATH',__DIR__ .'/../views');
+
+session_start();
+
 
  $route = new App\Router();
 
 
-$route->get('/',[\App\Classes\Home::class,'index'])
-   ->get('/invoice',[\App\Classes\Invoice::class,'index']);
+$route->get('/',[\App\Controller\HomeController::class,'index'])
+   ->get('/invoice',[\App\Controller\InvoiceController::class,'index'])
+   ->get('/invoice/create',[\App\Controller\InvoiceController::class,'create']);
 
 
 
