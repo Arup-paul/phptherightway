@@ -11,17 +11,19 @@ define('VIEW_PATH',__DIR__ .'/../views');
 
 session_start();
 
+try {
 
- $route = new App\Router();
-
-
-$route->get('/',[\App\Controller\HomeController::class,'index'])
-   ->get('/invoice',[\App\Controller\InvoiceController::class,'index'])
-   ->get('/invoice/create',[\App\Controller\InvoiceController::class,'create']);
+    $route = new App\Router();
 
 
+    $route->get('/', [\App\Controller\HomeController::class, 'index'])
+        ->get('/invoice', [\App\Controller\InvoiceController::class, 'index'])
+        ->get('/invoice/create', [\App\Controller\InvoiceController::class, 'create']);
 
 
-echo $route->resolve($_SERVER['REQUEST_URI'],strtolower($_SERVER['REQUEST_METHOD']));
+    echo $route->resolve($_SERVER['REQUEST_URI'], strtolower($_SERVER['REQUEST_METHOD']));
 
-
+}catch (\App\Exception\RouteNotFoundException $e) {
+    http_response_code(404);
+    echo  \App\View::make('error/404');
+}
